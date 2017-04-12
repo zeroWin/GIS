@@ -15,6 +15,11 @@ hs_err_pid*
 # Operating System Files
 # =========================
 
+#unused dir
+/hmwk
+/openlayers
+/.idea
+
 # OSX
 # =========================
 
