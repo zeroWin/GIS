@@ -1268,3 +1268,111 @@ function CET6keypress1(event)
 	}
 }
 
+// 巡检员搜索界面使用
+//ipqcInput
+function ipqckeypress(event)
+{
+	var UserName = document.getElementById("ipqcName");
+	var numInput = document.getElementById("ipqcNumInput");
+	if(UserName.value == "")
+	{
+		numInput.style.display = "none";
+	}
+	else
+	{
+		var num = strlen(UserName.value);
+		numInput.style.display = "";
+		numInput.innerHTML = "<p >已输入" + num + "个字符</p>";
+	}
+	
+	judgeIpqc();
+}
+
+//ipqc 聚焦
+function ipqcFocus()
+{
+	var UserName = document.getElementById("ipqcName");
+	var UserName_info = document.getElementById("ipqc_info");
+	if(UserName.focus)	//input聚焦
+	{
+		if(UserName.value=="")
+		{
+			UserName_info.innerText="请输入巡检员编号(1-10位数字)";
+		}
+		else
+		{
+			var reg=/^\d+$/;
+			if(reg.test(UserName.value) == false)
+			{
+				UserName_info.innerText="编号必须是纯数字";
+			}
+			else
+			{
+				if(strlen(UserName.value) > 10)
+				{
+					UserName_info.innerText="1-10个数字";
+				}
+				else
+				{
+					UserName_info.innerText="正确";
+				}
+			}
+		}
+		
+		judgeIpqc();
+	}
+}
+
+//ipqc失焦
+function ipqcBlur()
+{
+	var UserName = document.getElementById("ipqcName");
+	var UserName_info = document.getElementById("ipqc_info");
+	if(UserName.blur)
+	{
+		if(UserName.value=="")
+		{
+			UserName_info.innerText="巡检员编号不能为空";
+		}
+		else
+		{
+			var reg=/^\d+$/;
+			if(reg.test(UserName.value) == false)
+			{
+				UserName_info.innerText="巡检员编号必须是纯数字";
+			}
+			else
+			{
+				if(strlen(UserName.value) > 10)
+				{
+					UserName_info.innerText="1-10个数字";
+				}
+				else
+				{
+					UserName_info.innerText="正确";
+				}
+			}
+		}
+		
+		judgeIpqc();
+	}
+	
+}
+
+function judgeIpqc()
+{
+	var UserName = document.getElementById("ipqcName");
+	var button = document.getElementById("ipqcSubmit");
+	
+	var reg=/^\d+$/;
+	if(UserName.value=="" || reg.test(UserName.value) == false || strlen(UserName.value) > 10)
+	{
+		button.disabled = true;
+	}
+	else
+	{
+		button.disabled = false;
+	}
+}
+
+

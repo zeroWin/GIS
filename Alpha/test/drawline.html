@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>画线</title>
+	<meta charset="utf-8">
+    <link rel="stylesheet" href="../css/ol.css" type="text/css">
+    <!-- The line below is only needed for old environments like Internet Explorer and Android 4.x -->
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>
+    <script src="../js/ol.js"></script>
+  </head>
+<body>
+    <div id="map" class="map"></div>
+    <script>
+	  var LineStyle = new ol.style.Style({
+        stroke: new ol.style.Stroke({  
+		  width: 4,  
+          color: [255, 0, 0, 1]  
+        })  
+	  });
+	
+	
+	  var rasterLayer = new ol.layer.Tile({
+		source: new ol.source.OSM()
+	  });
+	  
+	  var view = new ol.View({
+		// the view's initial state
+        center: ol.proj.transform([114.103462219238, 38.260982513428], 'EPSG:4326', 'EPSG:3857'),
+        zoom: 15
+      });
+	  
+	  <!-- 显示的线 -->
+	  var saoguan = new ol.Feature({  
+        geometry: new ol.geom.LineString([
+		  ol.proj.fromLonLat([114.103462219238,38.260982513428]),
+		  ol.proj.fromLonLat([114.103469848633,38.260982513428]),
+		  ol.proj.fromLonLat([114.103546142578,38.260982513428]),
+		  ol.proj.fromLonLat([115.825485229492,38.444396972656])
+		]) 
+	  }); 
+
+      saoguan.setStyle(LineStyle);
+	
+      var vectorSource = new ol.source.Vector({
+        features: [saoguan]
+      });
+	  
+      var vectorLayer = new ol.layer.Vector({
+        source: vectorSource
+      });
+	  
+	  var map = new ol.Map({
+	    layers: [rasterLayer,vectorLayer],
+		target: 'map',
+		view: view
+	  });
+    </script>
+  </body>
+</html>

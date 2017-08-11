@@ -6,7 +6,7 @@ stdhead();
 
 <?php
 session_start();
-if(isset($_SESSION['id'])){         //如果没有登陆 那么返回主页
+if(isset($_SESSION['id'])){         //如果已经登陆 那么返回主页
 	header('location:index.php');
 	die();
 }

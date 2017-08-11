@@ -36,6 +36,7 @@ function userlogin()
 	}else{
 	}
 }
+
 //sql语句转码函数 防止注入式sql攻击
 function sqlesc($value,$link)
 {
@@ -73,18 +74,21 @@ function stdhead()  //标准头函数
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="author" value="nullne">
-        <link rel="shortcut icon" type="image/x-icon" href="http://localgis/alpha/img/favicon.ico">
+        <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
 		<!-- Bootstrap -->
 		<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
 		<script type="text/javascript" src="js/jquery-ui-1.10.1.custom.min.js"></script>
+		<script type="text/javascript" src="js/jquery.form.min.js"></script>
 		<script type="text/javascript" src="js/bootstrap.js"></script>
-        <script src="js/yulei.js" type="text/javascript"></script>
+        <script type="text/javascript" src="js/yulei.js"></script>
+		<script type="text/javascript" src="js/ol.js"></script>
 		<link href="css/bootstrap.css" rel="stylesheet" media="screen">
 		<!--[if lte IE 6]>	
 		<link rel="stylesheet" type="text/css" href="bsie/bootstrap-ie6.min.css">
 		<![endif]-->
 		<link href="css/jquery-ui-1.10.1.custom.css" rel="stylesheet" media="screen">
 		<link href="css/jquery-ui-1.10.1.custom.min.css" rel="stylesheet" media="screen">
+		<link rel="stylesheet" href="css/ol.css" type="text/css">
 		</head>
 
 		<body>
@@ -92,11 +96,19 @@ function stdhead()  //标准头函数
 		<div class="navbar navbar-inverse navbar-fixed-top">
 			<div class="navbar-inner">
 				<div class="container">
-					<a class="brand" href="map.php">铁路路线图</a>
+					<a class="brand" href="index.php">铁路预警系统</a>
 					<div class="nav-collapse">
 						<ul class="nav">
 						<li class="active">
-						<a href="index.php">首页</a>
+						<a href="realTimeLocal.php">实时位置</a>
+						</li>
+						</ul>
+					</div>
+					
+					<div class="nav-collapse">
+						<ul class="nav">
+						<li class="active">
+						<a href="drawUserHistory.php">历史移动轨迹</a>
 						</li>
 						</ul>
 					</div>

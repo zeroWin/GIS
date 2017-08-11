@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.railwayalarm_v10">
+
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:persistent="true"
+        android:roundIcon="@drawable/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".WorkerActivity" />
+        <activity android:name=".RailwayActivity" />
+
+        <service
+            android:name=".WorkerService"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":push"/>
+        <service
+            android:name=".RailwayService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".RedAlarmActivity" />
+        <activity android:name=".YellowAlarmActivity" />
+        <activity android:name=".OrangeAlarmActivity" />
+
+        <receiver
+            android:name=".WorkerReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="com.example.railwayalarm_v10.WorkerService.destroy" />
+                <action android:name="com.example.railwayalarm_v10.WorkerActivity" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".RailwayReceiver"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":remote" />
+
+        <service
+            android:name=".RailwayListenerService"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":push" />
+        <service
+            android:name=".WorkerListenerServer"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":push" />
+
+        <activity android:name=".RailwayLoginActivity" />
+        <activity android:name=".WorkerLoginActivity"></activity>
+    </application>
+
+</manifest>
